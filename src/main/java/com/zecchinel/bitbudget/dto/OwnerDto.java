@@ -1,12 +1,12 @@
 package com.zecchinel.bitbudget.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class OwnerDto {
-    private String name;
+public class OwnerDto extends BaseEntityDto {
+    public OwnerDto(String name) {
+        super(name);
+    }
 }
