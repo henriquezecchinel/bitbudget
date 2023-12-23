@@ -29,9 +29,9 @@ public class OwnerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OwnerDto> getOwner(@PathVariable Long id) {
-        Optional<Owner> owner = ownerRepository.findById(id);
-        return owner.map(o -> ResponseEntity.ok(new OwnerDto(o.getName())))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return ownerRepository.findById(id)
+                .map(owner -> ResponseEntity.ok(new OwnerDto(owner.getName())))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
