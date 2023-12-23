@@ -2,17 +2,14 @@ package com.zecchinel.bitbudget.controller;
 
 import com.zecchinel.bitbudget.dto.OwnerDto;
 import com.zecchinel.bitbudget.model.Owner;
+import com.zecchinel.bitbudget.repository.BaseEntityRepository;
 import com.zecchinel.bitbudget.repository.OwnerRepository;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/owners")
-public class OwnerController {
+public class OwnerController extends BaseEntityController<Owner, OwnerDto> {
 
     private final OwnerRepository ownerRepository;
 
@@ -20,47 +17,13 @@ public class OwnerController {
         this.ownerRepository = ownerRepository;
     }
 
-    @GetMapping
-    public List<OwnerDto> getAllOwners() {
-        return ownerRepository.findAll().stream()
-                .map(owner -> new OwnerDto(owner.getName()))
-                .collect(Collectors.toList());
+    @Override
+    protected BaseEntityRepository<Owner> getRepository() {
+        return this.ownerRepository;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OwnerDto> getOwner(@PathVariable Long id) {
-        return ownerRepository.findById(id)
-                .map(owner -> ResponseEntity.ok(new OwnerDto(owner.getName())))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public OwnerDto createOwner(@RequestBody Owner owner) {
-        Owner newOwner = new Owner();
-        newOwner.setName(owner.getName());
-
-        Owner savedOwner = ownerRepository.save(newOwner);
-        return new OwnerDto(savedOwner.getName());
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Owner> updateOwner(@PathVariable Long id, @RequestBody Owner ownerDetails) {
-        Optional<Owner> owner = ownerRepository.findById(id);
-        if (owner.isPresent()) {
-            ownerDetails.setId(id);
-            return ResponseEntity.ok(ownerRepository.save(ownerDetails));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOwner(@PathVariable Long id) {
-        if (ownerRepository.existsById(id)) {
-            ownerRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @Override
+    protected OwnerDto convertToDto(Owner entity) {
+        return new OwnerDto(entity.getName());
     }
 }
