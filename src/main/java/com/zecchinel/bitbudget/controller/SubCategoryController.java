@@ -33,8 +33,8 @@ public class SubCategoryController extends BaseEntityController<SubCategory, Sub
 
     @Override
     protected SubCategoryDto convertToDto(SubCategory entity) {
-        MainCategoryDto mainCategoryDto = new MainCategoryDto(entity.getMainCategory().getId(), entity.getMainCategory().getName());
-        return new SubCategoryDto(entity.getId(), entity.getName(), mainCategoryDto);
+        MainCategoryDto mainCategoryDto = new MainCategoryDto(entity.getMainCategory().getId(), entity.getMainCategory().getDescription());
+        return new SubCategoryDto(entity.getId(), entity.getDescription(), mainCategoryDto);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class SubCategoryController extends BaseEntityController<SubCategory, Sub
                 if (mainCategoryOpt.isPresent()) {
                     SubCategory subCategory = new SubCategory();
                     subCategory.setMainCategory(mainCategoryOpt.get());
-                    subCategory.setName(entity.getName());
+                    subCategory.setDescription(entity.getDescription());
 
                     SubCategory savedSubCategory = subCategoryRepository.save(subCategory);
                     return ResponseEntity.ok(convertToDto(savedSubCategory));

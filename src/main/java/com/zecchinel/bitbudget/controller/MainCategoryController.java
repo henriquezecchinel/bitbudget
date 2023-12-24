@@ -24,6 +24,6 @@ public class MainCategoryController extends BaseEntityController<MainCategory, M
 
     @Override
     protected MainCategoryDto convertToDto(MainCategory entity) {
-        return new MainCategoryDto(entity.getId(), entity.getName());
+        return new MainCategoryDto(entity.getId(), entity.getDescription());
     }
 }

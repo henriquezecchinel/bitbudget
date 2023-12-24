@@ -16,5 +16,5 @@ public abstract class BaseEntity {
     private Long id;
 
     @Column(unique = true, columnDefinition = "citext")
-    private String name;
+    private String description;
 }

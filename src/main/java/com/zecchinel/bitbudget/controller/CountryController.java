@@ -24,6 +24,6 @@ public class CountryController extends BaseEntityController<Country, CountryDto>
 
     @Override
     protected CountryDto convertToDto(Country entity) {
-        return new CountryDto(entity.getId(), entity.getName());
+        return new CountryDto(entity.getId(), entity.getDescription());
     }
 }
