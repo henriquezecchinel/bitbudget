@@ -24,6 +24,6 @@ public class TagController extends BaseEntityController<Tag, TagDto> {
 
     @Override
     protected TagDto convertToDto(Tag entity) {
-        return new TagDto(entity.getName());
+        return new TagDto(entity.getId(), entity.getName());
     }
 }

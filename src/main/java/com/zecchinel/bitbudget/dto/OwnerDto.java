@@ -3,10 +3,10 @@ package com.zecchinel.bitbudget.dto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class OwnerDto extends BaseEntityDto {
-    public OwnerDto(String name) {
-        super(name);
+    public OwnerDto(Long id, String name) {
+        super(id, name);
     }
 }

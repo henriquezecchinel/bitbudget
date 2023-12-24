@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@MappedSuperclass
 @Data
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class BaseEntityDto {
+    private Long id;
     private String name;
 }

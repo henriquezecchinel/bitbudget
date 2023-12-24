@@ -24,6 +24,6 @@ public class OwnerController extends BaseEntityController<Owner, OwnerDto> {
 
     @Override
     protected OwnerDto convertToDto(Owner entity) {
-        return new OwnerDto(entity.getName());
+        return new OwnerDto(entity.getId(), entity.getName());
     }
 }

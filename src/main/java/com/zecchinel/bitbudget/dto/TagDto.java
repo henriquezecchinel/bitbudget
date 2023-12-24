@@ -3,10 +3,10 @@ package com.zecchinel.bitbudget.dto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class TagDto extends BaseEntityDto {
-    public TagDto(String name) {
-        super(name);
+    public TagDto(Long id, String name) {
+        super(id, name);
     }
 }
