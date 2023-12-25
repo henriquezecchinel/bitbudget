@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class MainCategoryDto extends BaseEntityDto {
-    public MainCategoryDto(Long id, String name) {
-        super(id, name);
+    public MainCategoryDto(Long id, String description) {
+        super(id, description);
     }
 }

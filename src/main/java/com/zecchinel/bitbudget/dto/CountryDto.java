@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CountryDto extends BaseEntityDto {
-    public CountryDto(Long id, String name) {
-        super(id, name);
+    public CountryDto(Long id, String description) {
+        super(id, description);
     }
 }

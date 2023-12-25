@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CurrencyDto extends BaseEntityDto {
-    public CurrencyDto(Long id, String name) {
-        super(id, name);
+    public CurrencyDto(Long id, String description) {
+        super(id, description);
     }
 }
