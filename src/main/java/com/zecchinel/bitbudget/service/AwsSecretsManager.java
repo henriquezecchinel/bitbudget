@@ -25,7 +25,7 @@ public class AwsSecretsManager {
     private static Gson gson = new Gson();
 
     public static AwsSecretsManager getSecret() {
-        String secretName = "bitbudget-db";
+        String secretName = "bitbudget-development-db";
         Region region = Region.of("eu-south-1");
 
         SecretsManagerClient client = SecretsManagerClient.builder()
@@ -49,4 +49,18 @@ public class AwsSecretsManager {
         var secretString = getSecretValueResponse.secretString();
         return gson.fromJson(secretString, AwsSecretsManager.class);
     }
+
+    public static AwsSecretsManager getLocalhostSecret() {
+        var localhostSecretString = "{"
+                + "\"username\": \"postgres\","
+                + "\"password\": \"postgres\","
+                + "\"engine\": \"postgres\","
+                + "\"host\": \"localhost\","
+                + "\"port\": 5432,"
+                + "\"dbInstanceIdentifier\": \"bitbudget-local\""
+                + "}";
+
+        return gson.fromJson(localhostSecretString, AwsSecretsManager.class);
+    }
+
 }
